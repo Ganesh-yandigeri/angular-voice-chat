@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: true,
+  soliUrl: 'http://soliboat.solidaridadasia.com/',
+  mapbox: {
+    accessToken: 'pk.eyJ1IjoiZGhhbmFuamF5a24iLCJhIjoiY2s2MGpzY3ZiMDRzbjNscWkwYm5xdjBocCJ9.u7trHsB9sMzVZCEktIe0VQ'
+  }
 };
 
 /*

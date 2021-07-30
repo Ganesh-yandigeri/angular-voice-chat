@@ -1,0 +1,65 @@
+<!-- ============================================================== -->
+<!-- start chatboat box popup code -->
+<!-- ============================================================== -->
+<div id="chat-circle" class="btn btn-raised" (click)="openOrColse()">
+    <div id="chat-overlay"></div>
+    <i class="far fa-comments"></i>
+</div>
+
+<div class="chat-box" id="myForm">
+    <div class="chat-box-header">
+         SoliBoat
+        <select style="width:80px; height:25px; float:center; margin-top:2px;" [ngModel]="selectedDevice" (change)="onChange($event.target.value)" name="sel2" class="form-control">
+          <option [ngValue]="null" disabled>lang</option>
+          <option *ngFor="let language of languages" [value]="language.id">{{language.name}}</option>
+        </select>
+        <span class="chat-box-toggle"><i class="fal fa-times" (click)="openOrColse()"></i></span>
+    </div>
+    <div class="chat-box-body">
+
+        <div class="chat-logs" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <div *ngFor="let soliData of msgList; index as i">
+            <div id="cm-msg-1" class="chat-msg self" *ngIf="soliData.id == 1 && soliData.data">
+                <span class="msg-avatar">
+                    <img src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg">
+                </span>
+                <div class="cm-msg-text">
+                    {{soliData.data}}
+                </div>
+            </div>
+            <div id="cm-msg-2" class="chat-msg user" *ngIf="soliData.id == 2">
+                <span class="msg-avatar">
+                    <img src="https://www.digiseller.ru/preview/665919/p1_2409835_df162272.png">
+                </span>
+                <div class="cm-msg-text">
+                    {{soliData.data}}
+                    <hr *ngIf="soliData.image" />
+                    <img *ngIf="soliData.image" src={{soliData.image}} style="width: 200px;">
+                  
+                </div>
+            </div>
+             <div id="cm-msg-2" class="chat-msg user" *ngIf="soliData.id == 3">
+                <span class="msg-avatar">
+                    <img src="https://uploads.sitepoint.com/wp-content/uploads/2015/12/1450973046wordpress-errors.png">
+                </span>
+                <div class="cm-msg-text text-danger">
+                    {{soliData.data}}
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </div>
+        <div class="chat-input">      
+            <form #askquestions="ngForm" (ngSubmit)="askQuestion()">
+                <input type="text" [disabled]="textButtonDisabled" (ngModelChange)="modelChangeFn($event)" [(ngModel)]="AskQuestion.question" name="question" id="chat-input" placeholder="Ask me question..." value={{service.text}} /> 
+                <button type="submit" [disabled]="textButtonDisabled" *ngIf="modelChange" class="chat-submit" id="chat-submit"><i class="fad fa-paper-plane"></i></button>
+            </form>
+            <button *ngIf="buttonFlagOnOff == true && !modelChange" class="chat-submit" id="chat-submit"><img src="../assets/images/mic-icon.gif" width="30px;"  (click)="stopService()" /></button>
+            <button [disabled]="textButtonDisabled" *ngIf="buttonFlagOnOff == false && !modelChange" class="chat-submit" id="chat-submit" (click)="startService()"><i class="fad fa-microphone"></i></button>
+        </div>
+</div>
+    
+<!-- ============================================================== -->
+<!-- end chatboat box popup code -->
+<!-- ============================================================== -->

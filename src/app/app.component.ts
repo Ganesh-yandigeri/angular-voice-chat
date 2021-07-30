@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { CounterComponent } from './counter/counter.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'voice-rec';
+
+  @ViewChild(CounterComponent) child: CounterComponent;
+
+  increment() {
+    this.child.increment();
+  }
+
+  decrement() {
+    this.child.decrement();
+  }
 }
